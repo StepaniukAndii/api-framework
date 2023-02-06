@@ -6,11 +6,9 @@ import static io.restassured.RestAssured.given;
 
 public abstract class BaseRequest {
 
-    public static Response post(String endPoint, Object requestBody) {
+    protected static Response post(String endPoint, Object requestBody) {
         return given()
-                .baseUri("http://34.229.67.67:5000")
                 .body(requestBody)
-                .contentType("application/json")
                 .when()
                 .log().all()
                 .post(endPoint)
@@ -18,4 +16,23 @@ public abstract class BaseRequest {
                 .log().all()
                 .extract().response();
     }
+    protected static Response delete(String endPoint, int id){
+        return given()
+                .when()
+                .log().all()
+                .delete(endPoint + "/" + id)
+                .then()
+                .log().all()
+                .extract().response();
+    }
+
+    protected  static Response getId(String endPoint, int id){
+        return given()
+                .when()
+                .get(endPoint, id)
+                .then()
+                .extract().response();
+
+    }
+
 }

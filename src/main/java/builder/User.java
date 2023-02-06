@@ -9,7 +9,7 @@ import lombok.Data;
 public class User {
 
     @Builder.Default
-    private String name = "Andrii";
+    private String name = String.valueOf(System.currentTimeMillis());
     @Builder.Default
-    private String content = "Hi! Dana! What?";
+    private String content = String.valueOf(System.currentTimeMillis());
 }
